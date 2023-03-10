@@ -5,7 +5,7 @@
     <div class="container">
         <br>
         <div class="row">
-            <div class="col-md-6"><a href="/Client" class="btn btn-dark">Back</a></div>
+            <div class="col-md-6"><a href="/home" class="btn btn-dark">Back</a></div>
 
         </div>
 
@@ -14,10 +14,6 @@
         <form action="/User/Save" method="POST" enctype="multipart/form-data" id="FormId">
 
             @csrf
-
-
-
-                    @csrf
 
 
                     <div class="row mb-3">
@@ -149,6 +145,24 @@
                             @enderror
                         </div>
                     </div>
+
+            <div class="row mb-3">
+                <label for="remark" class="col-md-4 col-form-label text-md-end">{{ __('Image 1') }}</label>
+                <div class="col-md-6">
+                    <input id="img_1" name="img_1"  class="form-control" type="file" accept="image/jpeg">
+                </div>
+            </div>
+
+
+            <div class="row mb-3">
+                <label for="remark" class="col-md-4 col-form-label text-md-end">{{ __('Image 2') }}</label>
+                <div class="col-md-6">
+                    <input id="img_2" name="img_2"  class="form-control" type="file"  accept="jpeg">
+                </div>
+            </div>
+
+
+
 
 
 

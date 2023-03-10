@@ -9,7 +9,63 @@
             <h1 class="col-md-8" >User</h1>
             <div class="col-md-4"><a href="/User/NewUser" class="btn btn-dark" >Create New</a></div>
         </div>
+        <br>
+        <br>
 
+        <form>
+            <div class="row">
+
+                <label class="col-md-2">DOB From</label>
+                <div class="col-md-4" >
+                    <input type="date" value="@if(isset($from_date)){{$from_date}}@endif" name="from_date" id="from_date"
+                           class="form-control">
+
+                </div>
+                <label class="col-md-2">DOB To</label>
+                <div class="col-md-4">
+                    <input type="date" value="@if(isset($to_date)){{$to_date}}@endif" name="to_date" id="to_date"
+                           class="form-control">
+
+                </div>
+            </div>
+            <br>
+
+            <div class="row">
+
+                <label class="col-md-2">First Name</label>
+                <div class="col-md-4" >
+                    <input type="text" value="@if(isset($first_name)){{$first_name}}@endif" name="first_name" id="first_name"
+                           class="form-control">
+
+                </div>
+                <label class="col-md-2">Last Name</label>
+                <div class="col-md-4">
+                    <input type="text" value="@if(isset($last_name)){{$last_name}}@endif" name="last_name" id="last_name"
+                           class="form-control">
+
+                </div>
+            </div>
+
+            <div class="row">
+            <button name="submit" class="btn btn-success" formaction="/home"
+                    style="width: 100px">Filter
+            </button>
+            </div>
+
+            {{--<div class="row">--}}
+
+                {{--<label class="col-md-2">Gender</label>--}}
+                {{--<div class="col-md-4" >--}}
+                    {{--<input type="date" value="@if(isset($from_date)){{$from_date}}@endif" name="from_date" id="from_date"--}}
+                           {{--class="form-control">--}}
+
+                {{--</div>--}}
+            {{--</div>--}}
+        </form>
+
+        <br>
+        <hr>
+        <br>
 
 
         <table id="selectedColumn" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
@@ -19,6 +75,7 @@
                 <th scope="col">Image</th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
+                <th scope="col">DOB</th>
                 <th scope="col">Actions</th>
             </tr>
             </thead>
@@ -30,6 +87,7 @@
                     </td>
                     <td>{{$user->name_title}}. {{$user->name}} {{$user->last_name}}</td>
                     <td>{{$user->email}}</td>
+                    <td>{{$user->date_of_birth}}</td>
                     <td>
                         <a class="btn" href="/User/{{$user->id}}/Edit" style="background-color: #0d56ff;color: white"><i class="fa fa-pencil" aria-hidden="false"></i></a>
                         <a class="btn" id="myBtn" onclick="view_user_data('{{$user->id}}')"  data-toggle="modal" data-target="#user_modal" style="background-color: #000000;color: white"><i class="fa fa-eye" aria-hidden="false"></i></a>

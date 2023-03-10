@@ -24,13 +24,37 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $users = User::all();
+
+            $from_date = $request->get("from_date");
+            $to_date = $request->get("to_date");
+            $first_name = $request->get("first_name");
+            $last_name = $request->get("last_name");
+
+            $users = User::select('users.*');
+            if ($from_date != null && $from_date != '' && $to_date != null && $to_date != '') {
+                $users->whereDate('users.date_of_birth', '<=', $to_date)
+                    ->whereDate('users.date_of_birth', '>=', $from_date);
+            }
+            if ($first_name != null && $first_name != ''){
+                $users->where('name', 'like', '%' . $first_name . '%');
+            }
+            if ($last_name != null && $last_name != ''){
+                $users->where('last_name', 'like', '%' . $last_name . '%');
+            }
+
+
+
+
 
             return view('home',
-                ['users' => $users
+                ['users' => $users->get(),
+                    'from_date' => $from_date,
+                    'to_date' => $to_date,
+                    'first_name' => $first_name,
+                    'last_name' => $last_name,
                 ]);
         } catch (\Exception $e) {
 

@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::any('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 //create new user
 Route::get('/User/NewUser', [App\Http\Controllers\HomeController::class, 'createUser'])->name('createUser');

@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Sampath User') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -23,7 +23,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 4 Dashboard Sidebar Menu Example</title>
+    <title>Test</title>
 
 
     <!-- Style CSS -->
@@ -117,58 +117,12 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/Client">
+                                    <a href="/home">
                                         <i class="fa fa-calendar"></i>
-                                        <span>Client</span>
-                                    </a>
-                                </li>
-                                <li class="sidebar-dropdown">
-                                    <a href="#">
-                                        <i class="fa fa-chart-line"></i>
-                                        <span>Menu Items</span>
-                                    </a>
-                                    <div class="sidebar-submenu">
-                                        <ul>
-                                            <li>
-                                                <a href="#">Cake</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Short Eats</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Rice</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Pizza</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-calendar"></i>
-                                        <span>Tables</span>
+                                        <span>Users</span>
                                     </a>
                                 </li>
 
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-calendar"></i>
-                                        <span>Reviews</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-calendar"></i>
-                                        <span>Orders</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-calendar"></i>
-                                        <span>Live Orders</span>
-                                    </a>
-                                </li>
 
 
                             </ul>
