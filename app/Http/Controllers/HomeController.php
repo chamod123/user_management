@@ -101,4 +101,63 @@ class HomeController extends Controller
     }
 
 
+    public function view_user_edit($client_no)
+    {
+        try {
+            $user = User::find($client_no);
+            return view('edit',
+                ['user' => $user
+                ]);
+        } catch (\Exception $e) {
+
+            return $e->getMessage();
+        }
+    }
+
+
+    //update client
+    public function user_edit(Request $data)
+    {
+            try {
+                $validator = Validator::make($data->all(), [
+                    'name_title' => 'required',
+                    'name' => 'required',
+                    'email' => 'required',
+                    'last_name' => 'required',
+                    'date_of_birth' => 'required',
+                    'gender' => 'required',
+                    'remark' => 'required',
+                ]);
+
+                if ($validator->fails()) {
+                    return response()->json(['errors' => $validator->getMessageBag()->toArray()], 200);
+                }
+
+                $user = User::find($data->user_no);
+                $user->name_title = $data['name_title'];
+                $user->name = $data['name'];
+                $user->email = $data['email'];
+                $user->last_name = $data['last_name'];
+                $user->date_of_birth = $data['date_of_birth'];
+                $user->gender = $data['gender'];
+                $user->remark = $data['remark'];
+
+
+                $user->save();
+
+
+                return redirect('/home');
+            } catch (\Exception $e) {
+
+                return $e->getMessage();
+            }
+
+
+
+
+
+
+    }
+
+
 }

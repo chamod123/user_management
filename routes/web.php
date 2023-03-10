@@ -29,11 +29,13 @@ Route::get('/User/NewUser', [App\Http\Controllers\HomeController::class, 'create
 Route::post('/User/Save', [App\Http\Controllers\HomeController::class, 'storeUser'])->name('storeUser');
 
 
+
 Route::get('/User/{id}/View', [App\Http\Controllers\HomeController::class, 'view_user_data'])->name('view_user_data');
 
+Route::get('/User/{id}/Edit', [App\Http\Controllers\HomeController::class, 'view_user_edit'])->name('view_user_edit');
 
 
-
+Route::post('/User/Update', [App\Http\Controllers\HomeController::class, 'user_edit'])->name('user_edit');
 
 
 //save new client

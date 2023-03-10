@@ -31,7 +31,7 @@
                     <td>{{$user->name_title}}. {{$user->name}} {{$user->last_name}}</td>
                     <td>{{$user->email}}</td>
                     <td>
-                        <a class="btn" href="/Client/{{$user->id}}/Edit" style="background-color: #0d56ff;color: white"><i class="fa fa-pencil" aria-hidden="false"></i></a>
+                        <a class="btn" href="/User/{{$user->id}}/Edit" style="background-color: #0d56ff;color: white"><i class="fa fa-pencil" aria-hidden="false"></i></a>
                         <a class="btn" id="myBtn" onclick="view_user_data('{{$user->id}}')"  data-toggle="modal" data-target="#user_modal" style="background-color: #000000;color: white"><i class="fa fa-eye" aria-hidden="false"></i></a>
 
                     </td>
