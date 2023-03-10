@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserImage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -77,6 +78,10 @@ class HomeController extends Controller
     public function storeUser(Request $data)
     {
 
+
+
+
+
 //        return $data;
         try {
             $validator = Validator::make($data->all(), [
@@ -94,7 +99,7 @@ class HomeController extends Controller
                 return response()->json(['errors' => $validator->getMessageBag()->toArray()], 200);
             }
 
-            User::create([
+            $user_data = User::create([
                 'name_title' => $data['name_title'],
                 'name' => $data['name'],
                 'email' => $data['email'],
@@ -104,6 +109,24 @@ class HomeController extends Controller
                 'gender' => $data['gender'],
                 'remark' => $data['remark'],
             ]);
+
+            $image = $data->file('img_1');
+            $imageName = $image->getClientOriginalName();
+            $image->move(public_path('user_images'), $imageName);
+
+            $user_image = new UserImage();
+            $user_image->user_id = $user_data->id;
+            $user_image->image_name = $imageName;
+            $user_image->save();
+
+            $image2 = $data->file('img_2');
+            $imageName2 = $image2->getClientOriginalName();
+            $image2->move(public_path('user_images'), $imageName2);
+
+            $user_image = new UserImage();
+            $user_image->user_id = $user_data->id;
+            $user_image->image_name = $imageName2;
+            $user_image->save();
 
             return redirect('/home');
         } catch (\Exception $e) {
@@ -117,7 +140,11 @@ class HomeController extends Controller
     {
         try {
             $user = User::find($user_id);
-            return $user;
+
+            $user_images = UserImage::where('user_id','=',$user_id)->get();
+
+            return ['user'=>$user,
+                'user_images' =>$user_images];
         } catch (\Exception $e) {
 
             return $e->getMessage();

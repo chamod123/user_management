@@ -166,6 +166,25 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Image 1 :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div id="image1_div"></div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Image 2 :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <div id="image2_div"></div>
+                        </div>
+                    </div>
+
 
 
 
@@ -193,11 +212,15 @@
                 url: '/User/'+user_id+'/View',
                 type: 'get',
                 success: function (data) {
-                    $("#first_name_label").text(data.name);
-                    $("#last_name_label").text(data.last_name);
-                    $("#date_of_birth_label").text(data.date_of_birth);
-                    $("#gender_label").text(data.gender);
-                    $("#remark_label").text(data.remark);
+                    $("#first_name_label").text(data.user.name);
+                    $("#last_name_label").text(data.user.last_name);
+                    $("#date_of_birth_label").text(data.user.date_of_birth);
+                    $("#gender_label").text(data.user.gender);
+                    $("#remark_label").text(data.user.remark);
+
+
+                    $("#image1_div").html("<img src='\\user_images/"+data.user_images[0].image_name+"' style='width: 150px;height: 150px'/>");
+                    $("#image2_div").html("<img src='\\user_images/"+data.user_images[1].image_name+"' style='width: 150px;height: 150px'/>");
 
                 },
                 error: function () {

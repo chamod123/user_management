@@ -149,7 +149,7 @@
             <div class="row mb-3">
                 <label for="remark" class="col-md-4 col-form-label text-md-end">{{ __('Image 1') }}</label>
                 <div class="col-md-6">
-                    <input id="img_1" name="img_1"  class="form-control" type="file" accept="image/jpeg">
+                    <input id="img_1" name="img_1"  class="form-control" type="file" accept="jpeg">
                 </div>
             </div>
 
