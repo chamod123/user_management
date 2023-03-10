@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//create new user
+Route::get('/User/NewUser', [App\Http\Controllers\HomeController::class, 'createUser'])->name('createUser');
+
+
+Route::post('/User/Save', [App\Http\Controllers\HomeController::class, 'storeUser'])->name('storeUser');
+//save new client
+//Route::post('/Client/Save', 'ClientController@store');
+//new client add screen
+//Route::get('/User/NewUser', 'HomeController@createUser');
+
