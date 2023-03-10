@@ -27,6 +27,15 @@ Route::get('/User/NewUser', [App\Http\Controllers\HomeController::class, 'create
 
 
 Route::post('/User/Save', [App\Http\Controllers\HomeController::class, 'storeUser'])->name('storeUser');
+
+
+Route::get('/User/{id}/View', [App\Http\Controllers\HomeController::class, 'view_user_data'])->name('view_user_data');
+
+
+
+
+
+
 //save new client
 //Route::post('/Client/Save', 'ClientController@store');
 //new client add screen

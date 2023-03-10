@@ -89,5 +89,16 @@ class HomeController extends Controller
     }
 
 
+    public function view_user_data($user_id)
+    {
+        try {
+            $user = User::find($user_id);
+            return $user;
+        } catch (\Exception $e) {
+
+            return $e->getMessage();
+        }
+    }
+
 
 }

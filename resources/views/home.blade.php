@@ -32,8 +32,7 @@
                     <td>{{$user->email}}</td>
                     <td>
                         <a class="btn" href="/Client/{{$user->id}}/Edit" style="background-color: #0d56ff;color: white"><i class="fa fa-pencil" aria-hidden="false"></i></a>
-                        <a class="btn" onclick="delete_client('{{$user->id}}')" style="background-color: #c71111;color: white"><i class="fa fa-trash" aria-hidden="false"></i></a>
-                        <a class="btn" id="myBtn" onclick="view_client_data('{{$user->id}}')"  data-toggle="modal" data-target="#client_modal" style="background-color: #000000;color: white"><i class="fa fa-eye" aria-hidden="false"></i></a>
+                        <a class="btn" id="myBtn" onclick="view_user_data('{{$user->id}}')"  data-toggle="modal" data-target="#user_modal" style="background-color: #000000;color: white"><i class="fa fa-eye" aria-hidden="false"></i></a>
 
                     </td>
                 </tr>
@@ -47,11 +46,11 @@
 
     <!-- The Modal -->
     <!-- Modal -->
-    <div class="modal fade" id="client_modal" tabindex="-1" role="dialog"aria-hidden="true">
+    <div class="modal fade" id="user_modal" tabindex="-1" role="dialog"aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: black;color: white">
-                    <h5 class="modal-title">Client Details</h5>
+                    <h5 class="modal-title">User Details</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true" style="color: white">&times;</span>
                     </button>
@@ -84,48 +83,31 @@
 
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Name :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <label id="name_label"></label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label>Contact :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <label id="contact_label"></label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label>Email Address :</label>
-                        </div>
-                        <div class="col-md-8">
-                            <label id="email_label"></label>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-4">
                             <label>Date Of Birth :</label>
                         </div>
                         <div class="col-md-8">
-                            <label id="dob_label"></label>
+                            <label id="date_of_birth_label"></label>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-4">
-                            <label>Address :</label>
+                            <label>Gender :</label>
                         </div>
                         <div class="col-md-8">
-                            <label id="address_label"></label>
+                            <label id="gender_label"></label>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>Remark :</label>
+                        </div>
+                        <div class="col-md-8">
+                            <label id="remark_label"></label>
+                        </div>
+                    </div>
+
 
 
 
@@ -145,59 +127,23 @@
 @section('footer_content')
 
     <script>
-        function delete_client(client_id){
-            swal({
-                title: "Are you sure?",
-                text: "Do you want to Delete the Selected Client",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-                // showCancelButton: true,
-                // confirmButtonColor: '#3085d6',
-                // cancelButtonColor: '#d33',
-                // confirmButtonText: 'Yes, delete it!'
-            })
-                .then((willDelete) => {
-                    if (willDelete) {
-
-                        $.ajax({
-                            url: '/Client/'+client_id+'/Delete',
-                            type: 'get',
-                            data: {},
-                            success: function (data) {
-                                swal("Client deleted!", {
-                                    icon: "success",
-                                });
-                                location.reload();
-                            },
-                            error: function () {
-                                swal("Client Not Deleted!");
-                            }
-                        });
-
-                    } else {
-                        swal("Client Not Deleted!");
-                    }
-                });
-        }
 
 
-        function view_client_data(client_id){
+
+        function view_user_data(user_id){
             $.ajax({
-                url: '/Client/'+client_id+'/View',
+                url: '/User/'+user_id+'/View',
                 type: 'get',
                 success: function (data) {
-                    $("#first_name_label").text(data.first_name);
+                    $("#first_name_label").text(data.name);
                     $("#last_name_label").text(data.last_name);
-                    $("#name_label").text(data.first_name + ' ' + data.last_name);
-                    $("#contact_label").text(data.contact);
-                    $("#email_label").text(data.email);
-                    $("#dob_label").text(data.dob);
-                    $("#address_label").text(data.street_no + ', ' + data.street_address + ', ' + data.city);
+                    $("#date_of_birth_label").text(data.date_of_birth);
+                    $("#gender_label").text(data.gender);
+                    $("#remark_label").text(data.remark);
 
                 },
                 error: function () {
-                    swal("Client Data View Fail");
+                    swal("User Data View Fail");
                 }
             });
         }
